@@ -1,0 +1,49 @@
+
+<%= form_with model: sysinfo do |f| %>
+<div class="border border-slate-400 shadow-2xl drop-shadow-2xl rounded-lg w-min flex-col mx-auto bg-slate-900">
+  <h2 class="text-2xl p-4 rounded-t-lg bg-slate-800 mb-4">Asset details</h2>
+  <div class="pl-2">
+    <p class="p-1">Name</p>
+
+    
+    <%= f.text_field :name, class: "border p-1 m-1 rounded-lg" %>
+  </div>
+
+   <div class="mt-2 pl-2">
+    <p class="p-1">Rack position</p>
+    <%= f.text_field :rack_pos, class: "border p-1 m-1 rounded-lg"%>
+  </div>
+
+   <div class="mt-2 pl-2">
+    <p class="p-1">Slots</p>
+    <%= f.text_field :slots, class: "border p-1 m-1 rounded-lg" %>
+  </div>
+
+   <div class="mt-2 pl-2">
+    <p class="p-1">Notes</p>
+    <%= f.text_field :notes, class: "border p-1 m-1 rounded-lg" %>
+  </div>
+
+    <div class="mt-2 pl-2">
+    <p class="p-1">JSON file</p>
+    <%= f.file_field :json, class: "border border-gray-600 p-2 m-1 justify-end rounded-full cursor-pointer bg-gray-600" %>
+  </div>
+
+
+
+  
+
+
+  <div class="my-4 pl-55">
+<%= f.submit class: 'btn btn-primary hover:-translate-y-1 transition border border-blue-700 rounded-full py-1 px-2 justify-end cursor-pointer bg-blue-700' %>
+
+  </div>
+  
+  </div>
+    
+<% end %>
+
+
+
+
+

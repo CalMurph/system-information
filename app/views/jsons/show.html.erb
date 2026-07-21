@@ -1,0 +1,94 @@
+<h1 class="font-semibold text-4xl">System information for <em><%= @sysinfo.name %></em></h1>
+
+
+
+
+<div class="mt-15 flex flex-col items-center justify-center">
+    <div class="border-slate-400 border rounded-lg shadow-2xl drop-shadow-2xl">
+<table class="text-slate-300">
+<thead class="bg-slate-800">
+    <tr>
+        <th class="p-4 pl-12 rounded-tl-lg">Asset Name</th>
+        <th class="p-4">Rack Position</th>
+        <th class="p-4">Nuber of Slots</th>
+        <th class="p-4">Notes</th>
+        <th class="p-4">Created on</th>
+        <th class="p-4 rounded-tr-lg">Last Updated</th>
+        
+        </tr>
+        </thead>
+        <tbody class="bg-slate-900">
+            <tr>
+                <td class="p-4 pl-12 rounded-bl-lg"><%= @json_data["Name"] unless @json_data.nil? %></td>
+                <td class="p-4"><%= @sysinfo.rack_pos %></td>
+                <td class="p-4"><%= @sysinfo.slots %></td>
+                <td class="p-4"><%= @sysinfo.notes %></td>
+                <td class="p-4 "><%= @created_on %></td>
+                <td class="p-4 rounded-br-lg max-w-90"><%= @updated_on %></td>
+                </tr>
+
+
+
+
+
+</table>
+    </div>
+
+
+
+
+<div class=" flex justify-center items-center gap-1 mt-4">
+    <%  if @index > 1 %>
+<a href="/sysinfos/<%= @sysinfo_id %>/jsons/<%= @index - 1%>" class="border border-slate-400 cursor-pointer hover:bg-slate-300/10 p-2 rounded-full"><%= icon "chevron-left" %></a></button>
+ <% else %> 
+ <a href="/sysinfos/<%= @sysinfo_id %>/jsons/<%= @index + 1%>" class="text-white opacity-[0] p-2 border rounded-full pointer-events-none"> <%= icon "chevron-left" %></a>
+ 
+ <% end %>
+
+<% if @json_id.present? %>
+<a href="/sysinfos/jsons/data/<%= @json_id %>" class="border border-slate-400 cursor-pointer bg-slate-800 hover:bg-slate-900  transition rounded-full p-2">View Json</a>
+<% else %>
+<span class="border border-slate-400 bg-slate-800 opacity-50 rounded-full p-2">No Json</span>
+<% end %>
+
+
+ <%  if @index < @json_length %> 
+ <a href="/sysinfos/<%= @sysinfo_id %>/jsons/<%= @index + 1%>"  class="border border-slate-400 cursor-pointer hover:bg-slate-300/10 p-2 rounded-full"><%= icon "chevron-right" %> </a>
+ <% else %> 
+ <a href="/sysinfos/<%= @sysinfo_id %>/jsons/<%= @index + 1%>" class=" p-2 rounded-full opacity-[0] p-2 pointer-events-none"> <%= icon "chevron-left" %> </a>
+ <% end %>
+
+    </div>
+
+    <p class="text-slate-300 tex-xs mt-1"><%= @index %> / <%= @json_length %> </p>
+
+</div>
+
+
+
+<div>
+
+<div class="grid grid-cols-3 gap-2 mt-25">
+<div class="col-start-1">
+<%= link_to "Back", sysinfos_path, class: "text-white inline-block border transition border-slate-400 bg-slate-800 hover:-translate-y-1 rounded-full p-2"%>
+</div>
+
+<div class="col-start-3">
+<div class="flex justify-end gap-2 ">
+<%= link_to edit_sysinfo_path(@sysinfo), class: "border inline-flex items-center inline-block border-slate-400 gap-1 rounded-full p-2 hover:-translate-y-1 transition bg-sky-900" do%>
+<span>Edit</span>
+<span><%= icon "pencil" %></span>
+<% end %>
+
+<%= button_to @sysinfo, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "border inline-flex items-center gap-1 border-slate-400 hover:-translate-y-1 transition cursor-pointer rounded-full  p-2 bg-red-900" do %>
+
+<span>Delete</span>
+<span><%= icon "trash-2" %></span>
+<% end %>
+
+</div>
+</div>
+
+</div>
+
+</div>
